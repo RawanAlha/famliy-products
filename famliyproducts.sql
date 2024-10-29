@@ -148,6 +148,131 @@ CREATE TABLE `isue` (
 
 
 
+CREATE TABLE `ofd` (
+  `id` int(11) NOT NULL,
+  `od_id` int(11) NOT NULL,
+  `dv_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `o_id` text NOT NULL,
+  `u_id` int(11) NOT NULL,
+  `ad_id` int(11) DEFAULT 0,
+  `dv_date` varchar(255) DEFAULT '',
+  `dv_time` varchar(255) DEFAULT '',
+  `payment_type` int(11) DEFAULT 0,
+  `payment_status` int(11) DEFAULT 0,
+  `order_status` int(11) DEFAULT 0,
+  `mihpayid` varchar(255) DEFAULT '',
+  `txnid` varchar(255) DEFAULT '',
+  `payu_status` varchar(255) DEFAULT '',
+  `total_amt` float DEFAULT 0,
+  `ship_fee_order` float DEFAULT 0,
+  `final_val` float DEFAULT 0,
+  `isnew` int(11) DEFAULT 0,
+  `delivered_by` int(11) DEFAULT 0,
+  `u_cnfrm` int(11) DEFAULT 0,
+  `ptu` int(11) DEFAULT 0,
+  `udvc` int(11) DEFAULT 0,
+  `is_p_app` int(11) DEFAULT 0,
+  `is_w_ap` int(11) DEFAULT 0,
+  `prmo` float DEFAULT 0,
+  `wlmt` float DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `order_detail` (
+  `id` int(11) NOT NULL,
+  `oid` int(11) NOT NULL,
+  `p_id` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `hover` int(11) DEFAULT 0,
+  `rcvd` int(11) DEFAULT 0,
+  `delivered_qty` int(100) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+CREATE TABLE `order_status` (
+  `id` int(11) NOT NULL,
+  `o_status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+INSERT INTO `order_status` (`id`, `o_status`) VALUES
+(1, 'Placing'),
+(2, 'Placed'),
+(3, 'Assigned'),
+(4, 'Out for delivery'),
+(5, 'Delivered'),
+(6, 'Undelivered'),
+(7, 'Issue');
+
+
+CREATE TABLE `order_stlmnt` (
+  `id` int(11) NOT NULL,
+  `oid` int(11) NOT NULL,
+  `sid` int(11) NOT NULL,
+  `val` float DEFAULT 0,
+  `sc` float DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+
+CREATE TABLE `order_time` (
+  `id` int(11) NOT NULL,
+  `oid` int(11) NOT NULL,
+  `o_status` int(11) NOT NULL,
+  `added_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+
+CREATE TABLE `pin` (
+  `id` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL,
+  `s_id` int(11) NOT NULL,
+  `cn_id` int(11) NOT NULL,
+  `pincode` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL,
+  `cat_id` int(11) NOT NULL,
+  `scat_id` int(11) NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `img1` varchar(255) NOT NULL,
+  `img2` varchar(255) NOT NULL,
+  `img3` varchar(255) NOT NULL,
+  `img4` varchar(255) NOT NULL,
+  `price` float NOT NULL,
+  `sell_price` float NOT NULL,
+  `fa` float NOT NULL,
+  `shrt_desc` text NOT NULL,
+  `description` text NOT NULL,
+  `qty` int(11) NOT NULL,
+  `disclaimer` text NOT NULL,
+  `isappp` int(11) NOT NULL,
+  `isnew` tinyint(1) NOT NULL,
+  `bs` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `added_by` int(11) NOT NULL,
+  `belonging_city` int(11) NOT NULL,
+  `tax` float NOT NULL,
+  `sku` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `product_ad_on` (
+  `id` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `added_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 
@@ -175,6 +300,80 @@ CREATE TABLE `isue` (
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ALTER TABLE `ofd`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `order_detail`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `order_status`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `order_stlmnt`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `order_time`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `pin`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `product_ad_on`
+  ADD PRIMARY KEY (`id`);
+  
+  
+  ALTER TABLE `ofd`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `order_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE `order_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+ALTER TABLE `order_stlmnt`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `order_time`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `pin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `product_ad_on`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 
   ALTER TABLE `cnfrm_undelivery`
