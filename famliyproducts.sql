@@ -277,6 +277,102 @@ CREATE TABLE `product_ad_on` (
 
 
 
+CREATE TABLE `promo` (
+  `id` int(11) NOT NULL,
+  `code` varchar(60) NOT NULL,
+  `dis` float NOT NULL,
+  `minbal` float NOT NULL,
+  `scat` int(11) NOT NULL,
+  `adb` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+
+CREATE TABLE `p_filter` (
+  `id` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `fid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+
+CREATE TABLE `p_reject` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `cause` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+
+CREATE TABLE `p_sfilter` (
+  `id` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `sfid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+
+CREATE TABLE `rejection` (
+  `id` int(11) NOT NULL,
+  `s_id` int(11) NOT NULL,
+  `reason` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+
+CREATE TABLE `sellers` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) DEFAULT '',
+  `password` text NOT NULL,
+  `mobile` varchar(50) DEFAULT '',
+  `f_name` varchar(255) DEFAULT '',
+  `address` varchar(255) DEFAULT '',
+  `tob` int(11) DEFAULT 0,
+  `country` int(11) DEFAULT 0,
+  `state` int(11) DEFAULT 0,
+  `city` int(11) DEFAULT 0,
+  `pin` int(11) DEFAULT 0,
+  `b_name` varchar(255) DEFAULT '',
+  `b_crft` varchar(255) DEFAULT '',
+  `is_gst` tinyint(1) DEFAULT 0,
+  `gst_id` varchar(255) DEFAULT '',
+  `gst_crft` varchar(255) DEFAULT '',
+  `acc_num` varchar(255) DEFAULT '',
+  `acc_holder` varchar(255) DEFAULT '',
+  `ifsc` varchar(255) DEFAULT '',
+  `bank` varchar(255) DEFAULT '',
+  `branch` varchar(255) DEFAULT '',
+  `isapp` int(11) DEFAULT 0,
+  `is_new` tinyint(1) NOT NULL,
+  `is_cp` tinyint(1) DEFAULT 0,
+  `adhar` varchar(255) DEFAULT '',
+  `pan` varchar(255) DEFAULT '',
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `seller_wallet` (
+  `id` int(11) NOT NULL,
+  `seller_id` int(11) NOT NULL,
+  `ballance` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+CREATE TABLE `seller_w_msg` (
+  `id` int(11) NOT NULL,
+  `s_id` int(11) NOT NULL,
+  `cod` tinyint(1) NOT NULL,
+  `msg` text NOT NULL,
+  `balance` float NOT NULL,
+  `added_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `is_new` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 
@@ -315,8 +411,54 @@ CREATE TABLE `product_ad_on` (
 
 
 
-
-
+ALTER TABLE `promo`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `p_filter`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `p_reject`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `p_sfilter`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `rejection`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `sellers`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `seller_wallet`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `seller_w_msg`
+  ADD PRIMARY KEY (`id`);
+  
+  
+ALTER TABLE `promo`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ 
+ALTER TABLE `p_filter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ 
+ALTER TABLE `p_reject`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ 
+ALTER TABLE `p_sfilter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ 
+ALTER TABLE `rejection`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ 
+ALTER TABLE `sellers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ 
+ALTER TABLE `seller_wallet`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ 
+ALTER TABLE `seller_w_msg`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `ofd`
   ADD PRIMARY KEY (`id`);
