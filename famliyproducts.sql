@@ -376,40 +376,165 @@ CREATE TABLE `seller_w_msg` (
 
 
 
+CREATE TABLE `state` (
+  `id` int(11) NOT NULL,
+  `c_id` int(11) NOT NULL,
+  `state_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `subcategories` (
+  `id` int(11) NOT NULL,
+  `cat_id` int(11) NOT NULL,
+  `subcat` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+CREATE TABLE `sub_filter` (
+  `id` int(11) NOT NULL,
+  `filter_id` int(11) NOT NULL,
+  `subfilter` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) DEFAULT '',
+  `password` text DEFAULT '',
+  `mobile` varchar(255) DEFAULT '',
+  `name` varchar(255) DEFAULT '',
+  `m_vfd` tinyint(1) DEFAULT 0,
+  `e_vfd` tinyint(1) DEFAULT 0,
+  `status` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `users` (`id`, `email`, `password`, `mobile`, `name`, `m_vfd`, `e_vfd`, `status`) VALUES
+(1, 'a@gmail.com', '$2y$10$FmhxYWgtISBMczmnt9.M2.gXfHVbaYx6wuoqoow0kKu6H7Gb7rgEC', '505050550', 'alanzi', 0, 0, 1),
+(2, 'Areej_Aloufi_4455978@gmail.com', '$2y$10$OCqD./sQW2xr9N0UZmXvWuZ6G59VfxP0gC4HamyPaY5ww/MkWJ1aC', '4455978', 'Areej  Aloufi', 0, 0, 1),
+(3, 'Rawan_Alhazmi_4455005@gmail.com', '$2y$10$bQJ0dxJv3HMWx/GyiXuMVO3YXq0SQGCtW1lQRpgYKHvE.TMoe0STq', '4455005', 'Rawan Alhazmi', 0, 0, 1),
+(4, 'Dalin_Alrashdy_4455526@gmail.com', '$2y$10$jSjZVJ1wnlgePDTtMLOw2.GLYCbmcI1ZvroH2lVrpRFpjHw6NkFHm', '4455526', 'Dalin Alrashdy', 0, 0, 1),
+(5, 'Sara_Alrashdy_4358762@gmail.com', '$2y$10$jnPu6uzELss2QcSA5PeoP.XNUf4ExuFILN8VF/hLXrMetGssuzmPm', '4358762', 'Sara Alrashdy', 0, 0, 1),
+(6, 'gawahir_alanzi@gmail.com', '$2y$10$zrX/izroZ4XztFktNR0S..vi1lRMYCaGebQjwgk32FAEBMKla7wxu', '55555', 'gawahir alanzi', 0, 0, 1);
+
+
+CREATE TABLE `user_address` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `type_ad` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `user_mobile` varchar(255) NOT NULL,
+  `user_city` int(11) NOT NULL,
+  `user_add` varchar(255) NOT NULL,
+  `user_pin` varchar(255) NOT NULL,
+  `user_local` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `user_wallet` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `ballance` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `user_wallet` (`id`, `user_id`, `ballance`) VALUES
+(1, 1, 0),
+(2, 2, 0),
+(3, 3, 0),
+(4, 4, 0),
+(5, 5, 0),
+(6, 6, 0);
 
 
 
+CREATE TABLE `user_w_msg` (
+  `id` int(11) NOT NULL,
+  `u_id` int(11) NOT NULL,
+  `cod` tinyint(1) NOT NULL,
+  `msg` text NOT NULL,
+  `balance` float NOT NULL,
+  `added_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `is_new` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
+INSERT INTO `user_w_msg` (`id`, `u_id`, `cod`, `msg`, `balance`, `added_on`, `is_new`) VALUES
+(1, 1, 1, 'Wallet created', 0, '2024-10-27 03:40:54', 1),
+(2, 2, 1, 'Wallet created', 0, '2024-10-28 01:48:41', 1),
+(3, 3, 1, 'Wallet created', 0, '2024-10-28 01:50:11', 1),
+(4, 4, 1, 'Wallet created', 0, '2024-10-28 01:51:12', 1),
+(5, 5, 1, 'Wallet created', 0, '2024-10-28 01:52:14', 1),
+(6, 6, 1, 'Wallet created', 0, '2024-10-28 01:53:10', 1);
 
 
+CREATE TABLE `wishlist` (
+  `id` int(11) NOT NULL,
+  `u_id` int(11) NOT NULL,
+  `p_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
+CREATE TABLE `witdraw_req` (
+  `id` int(11) NOT NULL,
+  `s_id` int(11) NOT NULL,
+  `amount_w` float NOT NULL,
+  `amount_r` float NOT NULL,
+  `isnew` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+ 
+ALTER TABLE `state`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `subcategories`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `sub_filter`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `user_address`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `user_wallet`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `user_w_msg`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `wishlist`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `witdraw_req`
+  ADD PRIMARY KEY (`id`);
+ 
+ALTER TABLE `state`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ALTER TABLE `subcategories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ 
+ALTER TABLE `sub_filter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ 
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ 
+ALTER TABLE `user_address`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ 
+ALTER TABLE `user_wallet`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ 
+ALTER TABLE `user_w_msg`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ 
+ALTER TABLE `wishlist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ 
+ALTER TABLE `witdraw_req`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `promo`
   ADD PRIMARY KEY (`id`);
