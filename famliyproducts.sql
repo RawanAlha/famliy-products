@@ -78,6 +78,73 @@ CREATE TABLE `cnfrm_delivery` (
 
 
 
+CREATE TABLE `cnfrm_undelivery` (
+  `id` int(11) NOT NULL,
+  `od_id` int(11) NOT NULL,
+  `dv_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+CREATE TABLE `commission` (
+  `id` int(11) NOT NULL,
+  `scat_id` int(11) NOT NULL,
+  `com` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+CREATE TABLE `country` (
+  `id` int(11) NOT NULL,
+  `cntry_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `country` (`id`, `cntry_name`) VALUES
+(1, 'Ø§Ù„Ù…Ù…Ù„ÙƒØ© Ø§Ù„Ø¹Ø±Ø¨ÙŠØ© Ø§Ù„Ø³Ø¹ÙˆØ¯ÙŠØ©');
+
+
+CREATE TABLE `dc` (
+  `id` int(11) NOT NULL,
+  `dc` float NOT NULL,
+  `pc` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+INSERT INTO `dc` (`id`, `dc`, `pc`) VALUES
+(1, 0, 0);
+
+
+
+CREATE TABLE `delivery_boy` (
+  `id` int(11) NOT NULL,
+  `dv_name` varchar(255) NOT NULL,
+  `dv_username` varchar(255) NOT NULL,
+  `dv_password` text NOT NULL,
+  `dv_email` varchar(255) NOT NULL,
+  `dv_mobile` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+CREATE TABLE `dv_time` (
+  `id` int(11) NOT NULL,
+  `from` varchar(100) NOT NULL,
+  `tto` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+CREATE TABLE `filter` (
+  `id` int(11) NOT NULL,
+  `subcat_id` int(11) NOT NULL,
+  `filter` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+CREATE TABLE `isue` (
+  `id` int(11) NOT NULL,
+  `oid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 
@@ -97,6 +164,70 @@ CREATE TABLE `cnfrm_delivery` (
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ALTER TABLE `cnfrm_undelivery`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `cnfrm_undelivery`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `commission`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `commission`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `country`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `country`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+
+ALTER TABLE `dc`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `dc`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+
+ALTER TABLE `delivery_boy`
+  ADD PRIMARY KEY (`id`);
+
+
+ALTER TABLE `delivery_boy`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `dv_time`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `dv_time`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `filter`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `filter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `isue`
+  ADD PRIMARY KEY (`id`);
+
+
+ALTER TABLE `isue`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 
 ALTER TABLE `cnfrm_delivery`
