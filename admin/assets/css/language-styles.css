@@ -1,0 +1,66 @@
+/* Language-specific styles */
+html[dir="rtl"] {
+    text-align: right;
+}
+
+html[dir="rtl"] .input-group-prepend {
+    margin-left: -1px;
+    margin-right: 0;
+}
+
+html[dir="rtl"] .input-group > .input-group-prepend > .input-group-text {
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+html[dir="rtl"] .input-group > .form-control:not(:first-child) {
+    border-radius: 0.25rem 0 0 0.25rem;
+}
+
+html[dir="rtl"] .ml-auto {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+html[dir="rtl"] .pr-lg-5 {
+    padding-left: 3rem !important;
+    padding-right: 0 !important;
+}
+
+/* Language toggle button */
+.lang-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background-color: #556ee6;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 1rem;
+    z-index: 1000;
+    transition: opacity 0.2s;
+}
+
+.lang-toggle:hover {
+    opacity: 0.9;
+}
+
+/* Font settings */
+html[lang="ar"] body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Form RTL adjustments */
+html[dir="rtl"] .input-group-prepend {
+    order: 2;
+}
+
+html[dir="rtl"] .form-control {
+    order: 1;
+}
+
+html[dir="rtl"] .fa {
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
