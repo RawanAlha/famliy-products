@@ -2,10 +2,10 @@
 session_start();
 
 // تأسيس اتصال بقاعدة البيانات
-$servername = "localhost:3306";
-$username = "onlinepa_onlinepa";
-$password = "hsome370";
-$dbname = "onlinepa_hayaakumsit";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "mwl";
 
 $con = new mysqli($servername, $username, $password, $dbname);
 
